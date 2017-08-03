@@ -30,6 +30,7 @@ function clearScreen() {
 
 function drawAll() {
     clearScreen();
-    carDraw();
     drawTracks();
+    carDraw();
+    
 }

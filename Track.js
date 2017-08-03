@@ -1,4 +1,5 @@
 var wallPic = document.createElement("img");
+var backgroundPic = document.createElement("img");
 
 const TRACK_W = 40;
 const TRACK_H = 40;
@@ -28,7 +29,7 @@ const TRACK_PLAYERSTART = 2;
 
 function trackLoadImages() {
     wallPic.src = "coralwall.png";
-    roadPic.src = "wavestrack.png";
+    backgroundPic.src = "waves.png";
 }
 
 function isWallAtColRow(col, row) {
@@ -41,24 +42,42 @@ function isWallAtColRow(col, row) {
     }
 }
 
+function carTrackHandling() {
+    var carTrackCol = Math.floor(carX / TRACK_W);
+    var carTrackRow = Math.floor(carY / TRACK_H);
+    var trackIndexUnderCar = rowColToArrayIndex
+        (carTrackCol, carTrackRow);
+
+    if (carTrackCol >= 0 && carTrackCol < TRACK_COLS &&
+        carTrackRow >= 0 && carTrackRow < TRACK_ROWS) {
+
+        if (isWallAtColRow(carTrackCol, carTrackRow)) {
+            // next 2 lines added to fix a bug
+            // undoes the car movement which burrows it into the wall
+            carX -= Math.cos(carAng) * carSpeed;
+            carY -= Math.sin(carAng) * carSpeed;
+
+            carSpeed *= -0.5;
+        } //end of track found
+    } // end of valid col and rol
+} // end of carTrackHandling function
+
 function rowColToArrayIndex(col, row) {
     return col + TRACK_COLS * row;
 }
 
 function drawTracks() {
+    canvasContext.drawImage(backgroundPic, 0, 0);
 
     for (var eachRow = 0; eachRow < TRACK_ROWS; eachRow++) {
         for (var eachCol = 0; eachCol < TRACK_COLS; eachCol++) {
 
             var arrayIndex = rowColToArrayIndex(eachCol, eachRow);
 
-            if (trackGrid[arrayIndex] == TRACK_ROAD) {
-                canvasContext.drawImage(roadPic, TRACK_W * eachCol, TRACK_H * eachRow);
-            } else if (trackGrid[arrayIndex] == TRACK_WALL) {
+            if (trackGrid[arrayIndex] == TRACK_WALL) {
                 canvasContext.drawImage(wallPic, TRACK_W * eachCol, TRACK_H * eachRow);
-            }
-       
+                   
             } // end of is there a track here   
         } // end of for each each track
     } // end of for each row
-} // end of drawTracks func
+} // end of drawTracks function

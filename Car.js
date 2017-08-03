@@ -15,7 +15,7 @@ function carImageLoad() {
     carPic.onload = function () {
         CarPicLoaded = true;
     }
-    carPic.src = "jellyfish.png";
+    carPic.src = "turtle.png";
 }
 
 function carReset() {
@@ -54,27 +54,6 @@ function carMove() {
     carX += Math.cos(carAng) * carSpeed;
     carY += Math.sin(carAng) * carSpeed;
 }
-
-function carTrackHandling() {
-    var carTrackCol = Math.floor(carX / TRACK_W);
-    var carTrackRow = Math.floor(carY / TRACK_H);
-    var trackIndexUnderCar = rowColToArrayIndex
-        (carTrackCol, carTrackRow);
-
-    if (carTrackCol >= 0 && carTrackCol < TRACK_COLS &&
-        carTrackRow >= 0 && carTrackRow < TRACK_ROWS) {
-
-        if (isWallAtColRow(carTrackCol, carTrackRow)) {
-            // next 2 lines added to fix a bug
-            // undoes the car movement which burrows it into the wall
-            carX -= Math.cos(carAng) * carSpeed;
-            carY -= Math.sin(carAng) * carSpeed;
-
-            carSpeed *= -0.5;
-        } //end of track found
-    } // end of valid col and rol
-} // end of carTrackHandling func
-
 
 function carDraw() {
     // colorCircle(carX,carY, 10, 'white'); // draw car
