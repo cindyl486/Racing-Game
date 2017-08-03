@@ -28,6 +28,7 @@ const TRACK_PLAYERSTART = 2;
 
 function trackLoadImages() {
     wallPic.src = "coralwall.png";
+    roadPic.src = "wavestrack.png";
 }
 
 function isWallAtColRow(col, row) {
@@ -51,10 +52,13 @@ function drawTracks() {
 
             var arrayIndex = rowColToArrayIndex(eachCol, eachRow);
 
-            if (trackGrid[arrayIndex] == TRACK_WALL) {
-                canvasContext.drawImage(wallPic,TRACK_W * eachCol, TRACK_H * eachRow);
-                
-            } // end of is there is track here
+            if (trackGrid[arrayIndex] == TRACK_ROAD) {
+                canvasContext.drawImage(roadPic, TRACK_W * eachCol, TRACK_H * eachRow);
+            } else if (trackGrid[arrayIndex] == TRACK_WALL) {
+                canvasContext.drawImage(wallPic, TRACK_W * eachCol, TRACK_H * eachRow);
+            }
+       
+            } // end of is there a track here   
         } // end of for each each track
     } // end of for each row
 } // end of drawTracks func

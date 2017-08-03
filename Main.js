@@ -25,7 +25,7 @@ function moveAll() {
 }
 
 function clearScreen() {
-    colorRect(0, 0, canvas.width, canvas.height, 'black');
+    colorRect(0, 0, canvas.width, canvas.height, 'white');
 }
 
 function drawAll() {
