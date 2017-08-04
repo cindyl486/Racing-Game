@@ -1,6 +1,3 @@
-var wallPic = document.createElement("img");
-var backgroundPic = document.createElement("img");
-
 const TRACK_W = 40;
 const TRACK_H = 40;
 const TRACK_GAP = 2;
@@ -26,11 +23,6 @@ var trackGrid =
 const TRACK_ROAD = 0;
 const TRACK_WALL = 1;
 const TRACK_PLAYERSTART = 2;
-
-function trackLoadImages() {
-    wallPic.src = "coralwall.png";
-    backgroundPic.src = "waves.png";
-}
 
 function isWallAtColRow(col, row) {
     if (col >= 0 && col < TRACK_COLS &&
@@ -67,8 +59,7 @@ function rowColToArrayIndex(col, row) {
 }
 
 function drawTracks() {
-    canvasContext.drawImage(backgroundPic, 0, 0);
-
+    
     for (var eachRow = 0; eachRow < TRACK_ROWS; eachRow++) {
         for (var eachCol = 0; eachCol < TRACK_COLS; eachCol++) {
 

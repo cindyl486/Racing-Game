@@ -1,16 +1,20 @@
 var canvas, canvasContext;
 
-window.onload = function() {
-	canvas = document.getElementById('gameCanvas');
-	canvasContext = canvas.getContext('2d');
+window.onload = function () {
+    canvas = document.getElementById('gameCanvas');
+    canvasContext = canvas.getContext('2d');
+    
+    colorRect(0, 0, canvas.wdith, canvas.height, 'black');
+    colorText("LOADING IMAGES", canvas.width/2, canvas.height/2, 'white');
 
-	var framesPerSecond = 30
+    loadImages();
+}
+
+function imageLoadingDoneSoStartGame() {
+    var framesPerSecond = 30
     setInterval(updateAll, 1000 / framesPerSecond);
 
-    setupInput();
-
-    trackLoadImages();
-    carImageLoad();
+    setupInput();  
     carReset();
 }
 
@@ -24,13 +28,14 @@ function moveAll() {
     carTrackHandling();
 }
 
-function clearScreen() {
+/*function clearScreen() {
     colorRect(0, 0, canvas.width, canvas.height, 'white');
-}
+}*/
 
 function drawAll() {
-    clearScreen();
-    drawTracks();
+    // clearScreen();
+
+    loadImages();
     carDraw();
-    
+    drawTracks();
 }

@@ -1,6 +1,3 @@
-var carPic = document.createElement("img");
-var CarPicLoaded = false;
-
 var carX = 75;
 var carY = 75;
 var carAng = 0;
@@ -11,12 +8,7 @@ const DRIVE_POWER = 0.5;
 const REVERSE_POWER = 0.2;
 const TURN_RATE = 0.03;
 
-function carImageLoad() {
-    carPic.onload = function () {
-        CarPicLoaded = true;
-    }
-    carPic.src = "turtle.png";
-}
+
 
 function carReset() {
     for (var eachRow = 0; eachRow < TRACK_ROWS; eachRow++) {
@@ -57,7 +49,5 @@ function carMove() {
 
 function carDraw() {
     // colorCircle(carX,carY, 10, 'white'); // draw car
-    if (CarPicLoaded) {
-        drawBitmapCenteredWithRotation(carPic, carX, carY, carAng);
-    }
+    drawBitmapCenteredWithRotation(carPic, carX, carY, carAng);
 }
