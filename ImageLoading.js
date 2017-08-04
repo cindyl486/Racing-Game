@@ -40,8 +40,7 @@ function loadImages() {
         ];  
 
     picsToLoad = imageList.length;
-    canvasContext.drawImage(backgroundPic, 0, 0);
-
+    
     for(var i = 0; i < imageList.length; i++) {
         beginLoadingImage(imageList[i].varName, imageList[i].theFile);
     } // don't have to manually count how many images there are
