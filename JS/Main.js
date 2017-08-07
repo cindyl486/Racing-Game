@@ -36,7 +36,6 @@ function drawAll() {
     // clearScreen();
 
     canvasContext.drawImage(backgroundPic, 0, 0);
-    loadImages();
     carDraw();
     drawTracks();
 }
