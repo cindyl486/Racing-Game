@@ -63,16 +63,24 @@ function rowColToArrayIndex(col, row) {
 
 function drawTracks() {
      
+    var arrayIndex = 0;
+    var drawTileX = 0;
+    var drawTileY = 0;
+   
     for (var eachRow = 0; eachRow < TRACK_ROWS; eachRow++) {
         for (var eachCol = 0; eachCol < TRACK_COLS; eachCol++) {
-
-            var arrayIndex = rowColToArrayIndex(eachCol, eachRow);
             var tileKindHere = trackGrid[arrayIndex];
 
             if (tileKindHere != TRACK_ROAD) {
-                var useImg = trackPic[tileKindHere];
-                canvasContext.drawImage(useImg, TRACK_W * eachCol, TRACK_H * eachRow);
-            }   
+                var useImg = trackPics[tileKindHere];
+                canvasContext.drawImage(useImg, drawTileX, drawTileY);
+
+                drawTileX += TRACK_W;
+                arrayIndex++;
+                
+            } // if tile does not equal TRACK_ROAD, then use the array index 
         } // end of for each each track
-    } // end of for each row
+        drawTileY += TRACK_H;
+        drawTileX = 0;
+    } // end of for each row      
 } // end of drawTracks function
