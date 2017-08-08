@@ -1,5 +1,9 @@
 var canvas, canvasContext;
 
+var blueCar = new carClass();
+var greenCar = new carClass();
+
+
 window.onload = function () {
     canvas = document.getElementById('gameCanvas');
     canvasContext = canvas.getContext('2d');
@@ -15,17 +19,18 @@ function imageLoadingDoneSoStartGame() {
     setInterval(updateAll, 1000 / framesPerSecond);
 
     setupInput();  
-    carReset();
+    greenCar.reset(carPic, "Squirt");
+    blueCar.reset(otherCarPic, "Squishy");
 }
 
 function updateAll() {
-	moveAll();
+    moveAll();
 	drawAll();
 }
 
 function moveAll() {
-    carMove();
-    carTrackHandling();
+    greenCar.move();
+    blueCar.move();
 }
 
 /*function clearScreen() {
@@ -36,6 +41,7 @@ function drawAll() {
     // clearScreen();
 
     canvasContext.drawImage(backgroundPic, 0, 0);
-    carDraw();
+    greenCar.draw();
+    blueCar.draw();
     drawTracks();
 }
