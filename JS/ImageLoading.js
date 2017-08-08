@@ -1,10 +1,6 @@
-var carPic = document.createElement("img");
-var wallPic = document.createElement("img");
 var backgroundPic = document.createElement("img");
-var anemonePic = document.createElement("img");
-var goalPic = document.createElement("img");
-var flagPic = document.createElement("img");
-
+var carPic = document.createElement("img");
+var trackPics = [];
 
 var picsToLoad = 0; // set automatically based on imageList in loadImages()
 
@@ -36,19 +32,28 @@ function backgroundLoadImage() {
     canvasContext.drawImage(backgroundPic, 0, 0);
 }*/
 
+function loadImageForTrackCode(trackCode, fileName) {
+    trackPics[trackCode] = document.createElement("img");
+    beginLoadingImage(trackPics[trackCode], fileName);
+}
+
 function loadImages() {      
     var imageList = [
-        { varName: backgroundPic, theFile: "ocean.png"},    
+        { varName: backgroundPic, theFile: "ocean.png" },   
         { varName: carPic, theFile: "turtle.png" },
-        { varName: wallPic, theFile: "coralwall.png" },
-        { varName: anemonePic, theFile: "Anemone.png" },
-        { varName: flagPic, theFile: "flag.png" },
-        { varName: goalPic, theFile: "waves.png" }
-        ];  
+        { trackType: TRACK_WALL, theFile: "coralwall.png" },
+        { trackType: TRACK_ANEMONE, theFile: "Anemone.png" },
+        { trackType: TRACK_FLAG, theFile: "flag.png" },
+        { trackType: TRACK_GOAL, theFile: "finishline.png" }
+    ];  
 
     picsToLoad = imageList.length;
     
-    for(var i = 0; i < imageList.length; i++) {
-        beginLoadingImage(imageList[i].varName, imageList[i].theFile);
+    for (var i = 0; i < imageList.length; i++) {
+        if (imageList[i].varName != undefined) {
+            beginLoadingImage(imageList[i].varName, imageList[i].theFile);
+        } else {
+            loadImageForTrackCode(imageList[i].trackType, imageList[i].theFile);
+        }
     } // don't have to manually count how many images there are
 } // shortcut created 
