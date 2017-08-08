@@ -74,12 +74,12 @@ function drawTracks() {
             if (tileKindHere != TRACK_ROAD) {
                 var useImg = trackPics[tileKindHere];
                 canvasContext.drawImage(useImg, drawTileX, drawTileY);
-
-                drawTileX += TRACK_W;
-                arrayIndex++;
-                
             } // if tile does not equal TRACK_ROAD, then use the array index 
-        } // end of for each each track
+
+            drawTileX += TRACK_W;
+            arrayIndex++;      
+           
+        } // end of for each each col
         drawTileY += TRACK_H;
         drawTileX = 0;
     } // end of for each row      
