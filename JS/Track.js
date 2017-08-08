@@ -31,7 +31,7 @@ function returnTileTypeAtColRow(col, row) {
     if (col >= 0 && col < TRACK_COLS &&
         row >= 0 && row < TRACK_ROWS) {
         var trackIndexUnderCoord = rowColToArrayIndex(col, row);
-        return (trackGrid[trackIndexUnderCoord] != TRACK_ROAD);
+        return (trackGrid[trackIndexUnderCoord]); // (trackGrid[trackIndexUnderCoord != TRACK_ROAD])
     } else {
         return TRACK_WALL;
     }
@@ -40,15 +40,14 @@ function returnTileTypeAtColRow(col, row) {
 function carTrackHandling(whichCar) {
     var carTrackCol = Math.floor(whichCar.x / TRACK_W);
     var carTrackRow = Math.floor(whichCar.y / TRACK_H);
-    var trackIndexUnderCar = rowColToArrayIndex
-        (carTrackCol, carTrackRow);
+    var trackIndexUnderCar = rowColToArrayIndex (carTrackCol, carTrackRow);
 
     if (carTrackCol >= 0 && carTrackCol < TRACK_COLS &&
         carTrackRow >= 0 && carTrackRow < TRACK_ROWS) {
         var tileHere = returnTileTypeAtColRow(carTrackCol, carTrackRow);
-
+        
         if (tileHere == TRACK_GOAL) {
-            console.log(whichCar.name + "WINS!");
+            console.log(whichCar.name + " WINS!");
         } else if (tileHere != TRACK_ROAD) {
             // next 2 lines added to fix a bug
             // undoes the car movement which burrows it into the wall

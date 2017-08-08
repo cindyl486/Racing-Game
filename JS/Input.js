@@ -57,7 +57,7 @@ function keyPressed(evt) {
     keySet(evt,greenCar, true);
     keySet(evt,blueCar, true);
     
-    // evt.preventDefault();
+    evt.preventDefault(); // prevents screen scrolling
 }
 
 function keyReleased(evt) {
