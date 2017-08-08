@@ -71,6 +71,8 @@ function drawTracks() {
             var useImg;
 
             switch (tileKindHere) {
+                case TRACK_ROAD:
+                    continue;
                 case TRACK_WALL:
                     useImg = wallPic;
                     break;
