@@ -28,7 +28,8 @@ function loadLevel(whichLevel) {
     greenCar.reset(carPic, "Squirt");
     blueCar.reset(otherCarPic, "Squishy");
 
-    levelOne[30] = 5;
+    // levelOne[30] = 5;
+    // can setup various types of levels with code above
 }
 
 function updateAll() {
