@@ -3,22 +3,23 @@ const TRACK_H = 40;
 const TRACK_GAP = 2;
 const TRACK_COLS = 20;
 const TRACK_ROWS = 15;
-var trackGrid =
-   [4, 4, 4, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4,
-    4, 4, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1,
-    4, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
-    1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1,
-    1, 0, 0, 0, 1, 1, 1, 4, 4, 4, 4, 1, 1, 1, 1, 1, 1, 0, 0, 1,
-    1, 0, 0, 1, 1, 0, 0, 1, 4, 4, 1, 1, 0, 0, 0, 0, 1, 0, 0, 1,
-    1, 0, 0, 1, 0, 0, 0, 0, 1, 4, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1,
-    1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 5, 0, 0, 1, 0, 0, 1,
-    1, 0, 0, 1, 0, 0, 5, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1,
-    1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 5, 0, 0, 1, 0, 0, 1, 0, 0, 1,
-    1, 0, 0, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 5, 0, 0, 1,
-    1, 1, 1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1,
-    0, 0, 3, 0, 2, 0, 1, 4, 1, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1,
-    0, 0, 3, 0, 2, 0, 1, 4, 4, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1,
-    1, 1, 1, 1, 1, 1, 1, 4, 4, 4, 4, 4, 4, 1, 1, 1, 1, 1, 1, 4];
+var levelOne =
+           [4, 4, 4, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4,
+            4, 4, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1,
+            4, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
+            1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1,
+            1, 0, 0, 0, 1, 1, 1, 4, 4, 4, 4, 1, 1, 1, 1, 1, 1, 0, 0, 1,
+            1, 0, 0, 1, 1, 0, 0, 1, 4, 4, 1, 1, 0, 0, 0, 0, 1, 0, 0, 1,
+            1, 0, 0, 1, 0, 0, 0, 0, 1, 4, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1,
+            1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 5, 0, 0, 1, 0, 0, 1,
+            1, 0, 0, 1, 0, 0, 5, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1,
+            1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 5, 0, 0, 1, 0, 0, 1, 0, 0, 1,
+            1, 0, 0, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 5, 0, 0, 1,
+            1, 1, 1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1,
+            0, 0, 3, 0, 2, 0, 1, 4, 1, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1,
+            0, 0, 3, 0, 2, 0, 1, 4, 4, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1,
+            1, 1, 1, 1, 1, 1, 1, 4, 4, 4, 4, 4, 4, 1, 1, 1, 1, 1, 1, 4];
+var trackGrid = [];
 
 const TRACK_ROAD = 0;
 const TRACK_WALL = 1;
@@ -48,6 +49,7 @@ function carTrackHandling(whichCar) {
         
         if (tileHere == TRACK_GOAL) {
             console.log(whichCar.name + " WINS!");
+            loadLevel(levelOne);
         } else if (tileHere != TRACK_ROAD) {
             // next 2 lines added to fix a bug
             // undoes the car movement which burrows it into the wall
@@ -63,6 +65,30 @@ function rowColToArrayIndex(col, row) {
     return col + TRACK_COLS * row;
 }
 
+function drawGoal() {
+
+    var arrayIndex = 0;
+    var drawTileX = 0;
+    var drawTileY = 0;
+
+    for (var eachRow = 0; eachRow < TRACK_ROWS; eachRow++) {
+        for (var eachCol = 0; eachCol < TRACK_COLS; eachCol++) {
+            var tileKindHere = trackGrid[arrayIndex];
+
+            if (tileKindHere == TRACK_GOAL) {
+                var useImg = trackPics[tileKindHere];
+                canvasContext.drawImage(useImg, drawTileX, drawTileY);
+            } // if tile does not equal TRACK_ROAD, then use the array index 
+
+            drawTileX += TRACK_W;
+            arrayIndex++;
+
+        } // end of for each each col
+        drawTileY += TRACK_H;
+        drawTileX = 0;
+    }
+}
+
 function drawTracks() {
      
     var arrayIndex = 0;
@@ -73,7 +99,7 @@ function drawTracks() {
         for (var eachCol = 0; eachCol < TRACK_COLS; eachCol++) {
             var tileKindHere = trackGrid[arrayIndex];
 
-            if (tileKindHere != TRACK_ROAD) {
+            if (tileKindHere != TRACK_ROAD && tileKindHere != TRACK_GOAL) {
                 var useImg = trackPics[tileKindHere];
                 canvasContext.drawImage(useImg, drawTileX, drawTileY);
             } // if tile does not equal TRACK_ROAD, then use the array index 

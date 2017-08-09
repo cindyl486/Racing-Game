@@ -19,8 +19,16 @@ function imageLoadingDoneSoStartGame() {
     setInterval(updateAll, 1000 / framesPerSecond);
 
     setupInput();  
+
+    loadLevel(levelOne);
+}
+
+function loadLevel(whichLevel) {
+    trackGrid = whichLevel.slice();
     greenCar.reset(carPic, "Squirt");
     blueCar.reset(otherCarPic, "Squishy");
+
+    levelOne[30] = 5;
 }
 
 function updateAll() {
@@ -41,6 +49,7 @@ function drawAll() {
     // clearScreen();
 
     canvasContext.drawImage(backgroundPic, 0, 0);
+    drawGoal();
     greenCar.draw();
     blueCar.draw();
     drawTracks();
